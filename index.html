@@ -1,0 +1,3365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Algorithms & Pseudocode Portal | AI & DS | RVS College of Engineering</title>
+<style>
+  :root {
+    --bg: #f4f6fb;
+    --surface: #ffffff;
+    --surface-2: #eef2f9;
+    --text: #1a2233;
+    --text-muted: #5a6478;
+    --border: #dfe5f0;
+    --primary: #2563eb;
+    --primary-soft: #dbeafe;
+    --module-1: #2563eb;
+    --module-2: #059669;
+    --module-3: #d97706;
+    --code-bg: #0f172a;
+    --code-text: #a5f3fc;
+    --pseudo-bg: #1e293b;
+    --pseudo-text: #e0e7ff;
+    --algo-bg: #f0fdf4;
+    --algo-border: #86efac;
+    --algo-text: #14532d;
+    --shadow: 0 2px 12px rgba(20, 30, 60, 0.06);
+    --shadow-lg: 0 8px 30px rgba(20, 30, 60, 0.10);
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  [data-theme="dark"] {
+    --bg: #0f1524;
+    --surface: #1a2233;
+    --surface-2: #232c42;
+    --text: #e8edf7;
+    --text-muted: #9aa6bf;
+    --border: #2e3852;
+    --primary: #60a5fa;
+    --primary-soft: #1e3a5f;
+    --algo-bg: #1a2e1f;
+    --algo-border: #4ade80;
+    --algo-text: #bbf7d0;
+    --shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  /* ===== HEADER ===== */
+  .top-header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
+    color: #fff;
+    padding: 20px 24px;
+    box-shadow: var(--shadow-lg);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand-logo {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: rgba(255,255,255,0.18);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 20px; backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .brand-text h1 { font-size: 18px; font-weight: 700; }
+  .brand-text p { font-size: 12px; opacity: 0.9; margin-top: 2px; }
+
+  .header-actions { display: flex; gap: 10px; align-items: center; }
+  .icon-btn {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #fff;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .icon-btn:hover { background: rgba(255,255,255,0.28); transform: translateY(-1px); }
+  .menu-toggle { display: none; }
+
+  /* ===== LAYOUT ===== */
+  .layout {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 24px;
+    padding: 24px;
+  }
+
+  /* ===== SIDEBAR ===== */
+  .sidebar {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+  .sidebar::-webkit-scrollbar { width: 6px; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  .search-box {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+    color: var(--text);
+    font-size: 14px;
+    margin-bottom: 16px;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+  }
+  .search-box:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-soft); }
+
+  .nav-group { margin-bottom: 18px; }
+  .nav-group-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-bottom: 8px;
+    padding-left: 8px;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.15s, color 0.15s;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+  }
+  .nav-item:hover { background: var(--surface-2); }
+  .nav-item.active { background: var(--primary-soft); color: var(--primary); border-left-color: var(--primary); font-weight: 600; }
+  .nav-badge {
+    margin-left: auto;
+    font-size: 11px;
+    background: var(--surface-2);
+    padding: 2px 8px;
+    border-radius: 10px;
+    color: var(--text-muted);
+  }
+  .nav-item.active .nav-badge { background: var(--primary); color: #fff; }
+
+  .module-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-1 { background: var(--module-1); }
+  .dot-2 { background: var(--module-2); }
+  .dot-3 { background: var(--module-3); }
+
+  /* ===== MAIN ===== */
+  .main { min-width: 0; }
+
+  .hero {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+  .hero h2 { font-size: 26px; margin-bottom: 10px; }
+  .hero p { color: var(--text-muted); font-size: 15px; max-width: 800px; }
+
+  .module-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 22px;
+  }
+  .module-card {
+    padding: 20px;
+    border-radius: var(--radius);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .module-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .module-card .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .tag-1 { background: var(--module-1); }
+  .tag-2 { background: var(--module-2); }
+  .tag-3 { background: var(--module-3); }
+  .module-card h3 { font-size: 16px; margin-bottom: 6px; }
+  .module-card p { font-size: 13px; color: var(--text-muted); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 32px 0 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .section-header h2 { font-size: 20px; }
+  .section-header .level-tag {
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: var(--primary-soft);
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  /* ===== ALGO CARD ===== */
+  .algo-card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .algo-card:hover { box-shadow: var(--shadow-lg); }
+
+  .algo-head {
+    padding: 18px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .algo-num {
+    min-width: 48px; height: 48px;
+    border-radius: 10px;
+    background: var(--primary-soft);
+    color: var(--primary);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 15px;
+    flex-shrink: 0;
+  }
+  .algo-title { flex: 1; font-size: 16px; font-weight: 600; padding-top: 10px; }
+  .toggle-icon {
+    font-size: 20px;
+    color: var(--text-muted);
+    transition: transform 0.3s;
+    padding-top: 10px;
+  }
+  .algo-card.open .toggle-icon { transform: rotate(180deg); }
+
+  .algo-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    border-top: 1px solid var(--border);
+  }
+  .algo-card.open .algo-body { max-height: 3000px; }
+
+  .algo-section {
+    padding: 18px 22px;
+    border-bottom: 1px solid var(--border);
+  }
+  .algo-section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .problem-text {
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* Algorithm box */
+  .algo-box {
+    background: var(--algo-bg);
+    border-left: 4px solid var(--algo-border);
+    padding: 16px 18px;
+    border-radius: var(--radius-sm);
+    color: var(--algo-text);
+    font-size: 14px;
+    line-height: 1.9;
+    font-family: 'Consolas', 'Monaco', monospace;
+  }
+  .algo-box .step {
+    display: block;
+    padding-left: 0;
+  }
+
+  /* Pseudocode box */
+  .pseudo-wrap {
+    position: relative;
+  }
+  .pseudo-box {
+    background: var(--pseudo-bg);
+    color: var(--pseudo-text);
+    padding: 18px 20px;
+    border-radius: var(--radius-sm);
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 14px;
+    line-height: 1.8;
+    white-space: pre;
+    overflow-x: auto;
+  }
+  .pseudo-box .kw { color: #fbbf24; font-weight: 600; }
+  .pseudo-box .op { color: #f472b6; }
+  .pseudo-box .comment { color: #94a3b8; font-style: italic; }
+
+  .copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.25);
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  .copy-btn:hover { background: rgba(255,255,255,0.28); }
+  .copy-btn.copied { background: #16a34a; border-color: #16a34a; }
+
+  /* Sample I/O */
+  .sample-box {
+    background: var(--code-bg);
+    color: var(--code-text);
+    padding: 16px 18px;
+    border-radius: var(--radius-sm);
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+  }
+
+  .problem-actions {
+    padding: 12px 18px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    background: var(--surface-2);
+    border-top: 1px solid var(--border);
+  }
+  .btn {
+    padding: 7px 16px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 13px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.15s;
+  }
+  .btn:hover { border-color: var(--primary); color: var(--primary); }
+  .btn.done { background: #dcfce7; color: #166534; border-color: #86efac; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: var(--text-muted);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+  footer strong { color: var(--text); }
+
+  .back-top {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: var(--shadow-lg);
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 90;
+    transition: transform 0.2s;
+  }
+  .back-top:hover { transform: translateY(-3px); }
+  .back-top.show { display: flex; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 980px) {
+    .layout { grid-template-columns: 1fr; padding: 16px; }
+    .sidebar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 100vh;
+      width: 280px;
+      max-height: 100vh;
+      border-radius: 0;
+      z-index: 200;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      padding-top: 80px;
+    }
+    .sidebar.open { transform: translateX(0); }
+    .menu-toggle { display: flex; }
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 150;
+    }
+    .sidebar-overlay.show { display: block; }
+  }
+
+  @media (max-width: 640px) {
+    .top-header { padding: 14px 16px; }
+    .brand-text h1 { font-size: 14px; }
+    .brand-text p { font-size: 10px; }
+    .brand-logo { width: 40px; height: 40px; font-size: 16px; }
+    .hero { padding: 22px 18px; }
+    .hero h2 { font-size: 20px; }
+    .algo-head { padding: 14px 16px; }
+    .algo-num { min-width: 40px; height: 40px; font-size: 13px; }
+    .algo-title { font-size: 14px; }
+    .algo-section { padding: 14px 16px; }
+    .pseudo-box { font-size: 12px; padding: 14px; }
+    .algo-box { font-size: 13px; padding: 12px 14px; }
+    .copy-btn { padding: 5px 10px; font-size: 11px; }
+  }
+
+  @media print {
+    .top-header, .sidebar, .problem-actions, .back-top, .menu-toggle, .copy-btn { display: none !important; }
+    .layout { grid-template-columns: 1fr; }
+    .algo-body { max-height: none !important; }
+    .algo-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="top-header">
+  <div class="header-inner">
+    <div class="brand">
+      <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+      <div class="brand-logo">AP</div>
+      <div class="brand-text">
+        <h1>Algorithms &amp; Pseudocode Portal</h1>
+        <p>Department of Artificial Intelligence and Data Science · R.V.S College of Engineering</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" id="themeToggle" title="Toggle theme">🌙</button>
+    </div>
+  </div>
+</header>
+
+<div class="sidebar-overlay" id="overlay"></div>
+
+<!-- ===== LAYOUT ===== -->
+<div class="layout">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+    <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search algorithms..." />
+
+    <div class="nav-group">
+      <div class="nav-group-title">Module 1 · Sequential</div>
+      <a class="nav-item active" data-target="m1"><span class="module-dot dot-1"></span> Sequential Algorithms <span class="nav-badge">20</span></a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-title">Module 2 · Conditional</div>
+      <a class="nav-item" data-target="m2"><span class="module-dot dot-2"></span> Conditional Algorithms <span class="nav-badge">20</span></a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-title">Module 3 · Repetition</div>
+      <a class="nav-item" data-target="m3"><span class="module-dot dot-3"></span> Repetition Algorithms <span class="nav-badge">20</span></a>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main">
+
+    <section class="hero">
+      <h2>Welcome to the Algorithms &amp; Pseudocode Portal</h2>
+      <p>
+        A structured collection of <strong>60 algorithms</strong> designed for first-year
+        engineering students. Each entry includes a clear problem statement, a step-by-step
+        algorithm, formal pseudocode, and a sample input/output for verification. The
+        pseudocode uses standard academic notation — <code>READ</code>, <code>DISPLAY</code>,
+        <code>IF</code>, <code>WHILE</code>, and <code>←</code> for assignment.
+      </p>
+      <div class="module-cards">
+        <div class="module-card" data-target="m1">
+          <span class="tag tag-1">Module 1</span>
+          <h3>Sequential</h3>
+          <p>Straight-line logic — no branching, no loops.</p>
+        </div>
+        <div class="module-card" data-target="m2">
+          <span class="tag tag-2">Module 2</span>
+          <h3>Conditional</h3>
+          <p>Decision making with if / else.</p>
+        </div>
+        <div class="module-card" data-target="m3">
+          <span class="tag tag-3">Module 3</span>
+          <h3>Repetition</h3>
+          <p>Loops with while / for constructs.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MODULE 1 ===== -->
+        <!-- ===== MODULE 1 ===== -->
+    <section id="m1">
+      <div class="section-header">
+        <h2>Module 1 — Sequential Algorithms</h2>
+        <span class="level-tag">20 Algorithms</span>
+      </div>
+
+      <!-- A1 -->
+      <article class="algo-card" data-search="sum two numbers sequential algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A1</div>
+          <div class="algo-title">Sum of Two Numbers</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read two numbers from the user and display their sum.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter two numbers and store them as num1 and num2.</span>
+              <span class="step">3. Compute the sum by adding num1 and num2 together.</span>
+              <span class="step">4. Display the computed sum to the user.</span>
+              <span class="step">5. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a1">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a1"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> num1, num2
+    sum <span class="op">←</span> num1 + num2
+    <span class="kw">DISPLAY</span> sum
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  num1 = 5, num2 = 3
+Output: Sum = 8</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A2 -->
+      <article class="algo-card" data-search="difference two numbers subtract sequential algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A2</div>
+          <div class="algo-title">Difference of Two Numbers</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read two numbers and display their difference (first minus second).</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter two numbers and store them as num1 and num2.</span>
+              <span class="step">3. Subtract num2 from num1 to compute the difference.</span>
+              <span class="step">4. Display the computed difference to the user.</span>
+              <span class="step">5. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a2">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a2"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> num1, num2
+    diff <span class="op">←</span> num1 <span class="op">−</span> num2
+    <span class="kw">DISPLAY</span> diff
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  num1 = 10, num2 = 4
+Output: Difference = 6</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A3 -->
+      <article class="algo-card" data-search="product two numbers multiply sequential algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A3</div>
+          <div class="algo-title">Product of Two Numbers</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read two numbers and display their product.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter two numbers and store them as num1 and num2.</span>
+              <span class="step">3. Multiply num1 by num2 to compute the product.</span>
+              <span class="step">4. Display the computed product to the user.</span>
+              <span class="step">5. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a3">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a3"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> num1, num2
+    product <span class="op">←</span> num1 <span class="op">×</span> num2
+    <span class="kw">DISPLAY</span> product
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  num1 = 6, num2 = 7
+Output: Product = 42</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A4 -->
+      <article class="algo-card" data-search="average three numbers mean sequential algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A4</div>
+          <div class="algo-title">Average of Three Numbers</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read three numbers and display their average.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter three numbers and store them as num1, num2, and num3.</span>
+              <span class="step">3. Add the three numbers together to get their sum.</span>
+              <span class="step">4. Divide the sum by 3 to compute the average.</span>
+              <span class="step">5. Display the computed average to the user.</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a4">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a4"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> num1, num2, num3
+    sum <span class="op">←</span> num1 + num2 + num3
+    average <span class="op">←</span> sum <span class="op">÷</span> 3
+    <span class="kw">DISPLAY</span> average
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  num1 = 10, num2 = 20, num3 = 30
+Output: Average = 20</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A5 -->
+      <article class="algo-card" data-search="square cube number sequential algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A5</div>
+          <div class="algo-title">Square and Cube of a Number</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a number and display both its square and its cube.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter a number and store it as num.</span>
+              <span class="step">3. Multiply num by itself to compute the square.</span>
+              <span class="step">4. Multiply num by itself twice more to compute the cube.</span>
+              <span class="step">5. Display the computed square to the user.</span>
+              <span class="step">6. Display the computed cube to the user.</span>
+              <span class="step">7. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a5">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a5"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> num
+    square <span class="op">←</span> num <span class="op">×</span> num
+    cube <span class="op">←</span> num <span class="op">×</span> num <span class="op">×</span> num
+    <span class="kw">DISPLAY</span> square
+    <span class="kw">DISPLAY</span> cube
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  num = 4
+Output: Square = 16
+        Cube = 64</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A6 -->
+      <article class="algo-card" data-search="area rectangle length breadth sequential algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A6</div>
+          <div class="algo-title">Area of a Rectangle</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read length and breadth of a rectangle and display its area.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter the length and breadth of the rectangle.</span>
+              <span class="step">3. Multiply the length by the breadth to compute the area.</span>
+              <span class="step">4. Display the computed area to the user.</span>
+              <span class="step">5. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a6">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a6"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> length, breadth
+    area <span class="op">←</span> length <span class="op">×</span> breadth
+    <span class="kw">DISPLAY</span> area
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  length = 10, breadth = 5
+Output: Area = 50</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A7 -->
+      <article class="algo-card" data-search="perimeter rectangle sequential algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A7</div>
+          <div class="algo-title">Perimeter of a Rectangle</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read length and breadth of a rectangle and display its perimeter.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter the length and breadth of the rectangle.</span>
+              <span class="step">3. Add length and breadth together.</span>
+              <span class="step">4. Multiply the result by 2 to compute the perimeter.</span>
+              <span class="step">5. Display the computed perimeter to the user.</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a7">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a7"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> length, breadth
+    perimeter <span class="op">←</span> 2 <span class="op">×</span> (length + breadth)
+    <span class="kw">DISPLAY</span> perimeter
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  length = 10, breadth = 5
+Output: Perimeter = 30</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A8 -->
+      <article class="algo-card" data-search="area circumference circle pi sequential algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A8</div>
+          <div class="algo-title">Area and Circumference of a Circle</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read the radius of a circle and display its area and circumference.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter the radius of the circle.</span>
+              <span class="step">3. Multiply π by the radius twice to compute the area.</span>
+              <span class="step">4. Multiply 2 by π and the radius to compute the circumference.</span>
+              <span class="step">5. Display the computed area to the user.</span>
+              <span class="step">6. Display the computed circumference to the user.</span>
+              <span class="step">7. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a8">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a8"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> radius
+    area <span class="op">←</span> π <span class="op">×</span> radius <span class="op">×</span> radius
+    circumference <span class="op">←</span> 2 <span class="op">×</span> π <span class="op">×</span> radius
+    <span class="kw">DISPLAY</span> area
+    <span class="kw">DISPLAY</span> circumference
+<span class="kw">END</span>
+
+<span class="comment">// Note: π ≈ 3.14159</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  radius = 7
+Output: Area = 153.94
+        Circumference = 43.98</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A9 -->
+      <article class="algo-card" data-search="area triangle base height sequential algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A9</div>
+          <div class="algo-title">Area of a Triangle</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read the base and height of a triangle and display its area.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter the base and height of the triangle.</span>
+              <span class="step">3. Multiply the base by the height to compute the product.</span>
+              <span class="step">4. Divide the product by 2 to compute the area.</span>
+              <span class="step">5. Display the computed area to the user.</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a9">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a9"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> base, height
+    area <span class="op">←</span> (base <span class="op">×</span> height) <span class="op">÷</span> 2
+    <span class="kw">DISPLAY</span> area
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  base = 8, height = 6
+Output: Area = 24</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A10 -->
+      <article class="algo-card" data-search="celsius fahrenheit conversion sequential algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A10</div>
+          <div class="algo-title">Celsius to Fahrenheit</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read temperature in Celsius and convert it to Fahrenheit.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter the temperature in Celsius.</span>
+              <span class="step">3. Multiply Celsius by 9 and divide the result by 5.</span>
+              <span class="step">4. Add 32 to the result to compute the Fahrenheit value.</span>
+              <span class="step">5. Display the computed temperature in Fahrenheit.</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a10">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a10"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> celsius
+    fahrenheit <span class="op">←</span> (celsius <span class="op">×</span> 9 <span class="op">÷</span> 5) + 32
+    <span class="kw">DISPLAY</span> fahrenheit
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  celsius = 25
+Output: Fahrenheit = 77</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A11 -->
+      <article class="algo-card" data-search="simple interest principal rate time sequential algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A11</div>
+          <div class="algo-title">Simple Interest</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read principal, rate, and time. Calculate and display simple interest.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter the principal amount, rate of interest, and time period.</span>
+              <span class="step">3. Multiply principal, rate, and time together.</span>
+              <span class="step">4. Divide the product by 100 to compute simple interest.</span>
+              <span class="step">5. Display the computed simple interest.</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a11">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a11"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> principal, rate, time
+    SI <span class="op">←</span> (principal <span class="op">×</span> rate <span class="op">×</span> time) <span class="op">÷</span> 100
+    <span class="kw">DISPLAY</span> SI
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  principal = 10000, rate = 5, time = 2
+Output: Simple Interest = 1000</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A12 -->
+      <article class="algo-card" data-search="total salary basic allowances sequential algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A12</div>
+          <div class="algo-title">Total Salary from Basic + Allowances</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read basic salary and allowances. Calculate and display total salary.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter the basic salary and the allowances.</span>
+              <span class="step">3. Add the allowances to the basic salary to compute the total salary.</span>
+              <span class="step">4. Display the computed total salary.</span>
+              <span class="step">5. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a12">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a12"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> basic, allowances
+    total <span class="op">←</span> basic + allowances
+    <span class="kw">DISPLAY</span> total
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  basic = 40000, allowances = 8000
+Output: Total Salary = 48000</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A13 -->
+      <article class="algo-card" data-search="distance speed time sequential algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A13</div>
+          <div class="algo-title">Distance from Speed and Time</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read speed and time, and calculate the distance travelled.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter the speed and the time taken.</span>
+              <span class="step">3. Multiply speed by time to compute the distance.</span>
+              <span class="step">4. Display the computed distance.</span>
+              <span class="step">5. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a13">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a13"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> speed, time
+    distance <span class="op">←</span> speed <span class="op">×</span> time
+    <span class="kw">DISPLAY</span> distance
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  speed = 60 km/h, time = 2.5 h
+Output: Distance = 150 km</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A14 -->
+      <article class="algo-card" data-search="bmi body mass index height weight sequential algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A14</div>
+          <div class="algo-title">BMI Calculation</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read weight (kg) and height (m). Calculate and display BMI.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter weight in kilograms and height in metres.</span>
+              <span class="step">3. Multiply height by itself to compute the square of the height.</span>
+              <span class="step">4. Divide weight by the squared height to compute the BMI.</span>
+              <span class="step">5. Display the computed BMI to the user.</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a14">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a14"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> weight, height
+    h2 <span class="op">←</span> height <span class="op">×</span> height
+    BMI <span class="op">←</span> weight <span class="op">÷</span> h2
+    <span class="kw">DISPLAY</span> BMI
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  weight = 70 kg, height = 1.75 m
+Output: BMI = 22.86</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A15 -->
+      <article class="algo-card" data-search="rupees paise conversion sequential algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A15</div>
+          <div class="algo-title">Convert Rupees to Paise</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read an amount in rupees and convert it to paise.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter an amount in rupees.</span>
+              <span class="step">3. Multiply the amount by 100 to convert it to paise.</span>
+              <span class="step">4. Display the converted amount in paise.</span>
+              <span class="step">5. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a15">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a15"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> rupees
+    paise <span class="op">←</span> rupees <span class="op">×</span> 100
+    <span class="kw">DISPLAY</span> paise
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  rupees = 15
+Output: Paise = 1500</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A16 -->
+      <article class="algo-card" data-search="perimeter triangle three sides sequential algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A16</div>
+          <div class="algo-title">Perimeter of a Triangle</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read the three sides of a triangle and display its perimeter.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter the lengths of the three sides of the triangle.</span>
+              <span class="step">3. Add the three sides together to compute the perimeter.</span>
+              <span class="step">4. Display the computed perimeter to the user.</span>
+              <span class="step">5. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a16">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a16"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> side1, side2, side3
+    perimeter <span class="op">←</span> side1 + side2 + side3
+    <span class="kw">DISPLAY</span> perimeter
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  side1 = 5, side2 = 7, side3 = 9
+Output: Perimeter = 21</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A17 -->
+      <article class="algo-card" data-search="volume cuboid length breadth height sequential algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A17</div>
+          <div class="algo-title">Volume of a Cuboid</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read length, breadth, and height of a cuboid and display its volume.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter the length, breadth, and height of the cuboid.</span>
+              <span class="step">3. Multiply length, breadth, and height together to compute the volume.</span>
+              <span class="step">4. Display the computed volume to the user.</span>
+              <span class="step">5. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a17">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a17"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> length, breadth, height
+    volume <span class="op">←</span> length <span class="op">×</span> breadth <span class="op">×</span> height
+    <span class="kw">DISPLAY</span> volume
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  length = 10, breadth = 5, height = 4
+Output: Volume = 200</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A18 -->
+      <article class="algo-card" data-search="volume cylinder radius height sequential algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A18</div>
+          <div class="algo-title">Volume of a Cylinder</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read radius and height of a cylinder and display its volume.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter the radius and height of the cylinder.</span>
+              <span class="step">3. Multiply π by the radius twice (radius × radius) to compute the base area.</span>
+              <span class="step">4. Multiply the base area by the height to compute the volume.</span>
+              <span class="step">5. Display the computed volume to the user.</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a18">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a18"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> radius, height
+    volume <span class="op">←</span> π <span class="op">×</span> radius <span class="op">×</span> radius <span class="op">×</span> height
+    <span class="kw">DISPLAY</span> volume
+<span class="kw">END</span>
+
+<span class="comment">// Note: π ≈ 3.14159</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  radius = 7, height = 10
+Output: Volume = 1539.38</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A19 -->
+      <article class="algo-card" data-search="surface area cuboid sequential algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A19</div>
+          <div class="algo-title">Surface Area of a Cuboid</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read length, breadth, and height of a cuboid and display its surface area.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter the length, breadth, and height of the cuboid.</span>
+              <span class="step">3. Multiply length and breadth to get the first product (lb).</span>
+              <span class="step">4. Multiply breadth and height to get the second product (bh).</span>
+              <span class="step">5. Multiply height and length to get the third product (hl).</span>
+              <span class="step">6. Add the three products together and multiply the sum by 2 to compute the surface area.</span>
+              <span class="step">7. Display the computed surface area to the user.</span>
+              <span class="step">8. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a19">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a19"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> length, breadth, height
+    lb <span class="op">←</span> length <span class="op">×</span> breadth
+    bh <span class="op">←</span> breadth <span class="op">×</span> height
+    hl <span class="op">←</span> height <span class="op">×</span> length
+    SA <span class="op">←</span> 2 <span class="op">×</span> (lb + bh + hl)
+    <span class="kw">DISPLAY</span> SA
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  length = 10, breadth = 5, height = 4
+Output: Surface Area = 220</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A20 -->
+      <article class="algo-card" data-search="paise rupees conversion sequential algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A20</div>
+          <div class="algo-title">Convert Paise to Rupees</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read an amount in paise and convert it to rupees.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter an amount in paise.</span>
+              <span class="step">3. Divide the amount by 100 to convert it to rupees.</span>
+              <span class="step">4. Display the converted amount in rupees.</span>
+              <span class="step">5. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a20">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a20"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> paise
+    rupees <span class="op">←</span> paise <span class="op">÷</span> 100
+    <span class="kw">DISPLAY</span> rupees
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  paise = 1500
+Output: Rupees = 15</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <p style="text-align:center; color:var(--text-muted); padding:30px; font-size:14px;">
+        ✅ Module 1 complete — 20 algorithms.
+      </p>
+    </section>
+    <!-- ===== MODULE 2 ===== -->
+    <section id="m2" style="margin-top:60px;">
+      <div class="section-header">
+        <h2>Module 2 — Conditional Algorithms</h2>
+        <span class="level-tag">20 Algorithms</span>
+      </div>
+
+      <!-- A21 -->
+      <article class="algo-card" data-search="positive or not condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A21</div>
+          <div class="algo-title">Positive or Not</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a number and display whether it is positive or not.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">Step 1: Start</span>
+              <span class="step">Step 2: Read num</span>
+              <span class="step">Step 3: If num &gt; 0, then</span>
+              <span class="step">            Display "Positive"</span>
+              <span class="step">        Else</span>
+              <span class="step">            Display "Not Positive"</span>
+              <span class="step">Step 4: Stop</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a21">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a21"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> num
+    <span class="kw">IF</span> num <span class="op">&gt;</span> 0 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Positive"
+    <span class="kw">ELSE</span>
+        <span class="kw">DISPLAY</span> "Not Positive"
+    <span class="kw">END IF</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  num = 7
+Output: Positive
+
+Input:  num = -3
+Output: Not Positive</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+          <!-- ===== MODULE 2 ===== -->
+    <section id="m2">
+      <div class="section-header">
+        <h2>Module 2 — Conditional Algorithms</h2>
+        <span class="level-tag">20 Algorithms</span>
+      </div>
+
+      <!-- A21 -->
+      <article class="algo-card" data-search="positive or not condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A21</div>
+          <div class="algo-title">Positive or Not</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a number and display whether it is positive or not.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter a number and store it as num.</span>
+              <span class="step">3. Check whether num is greater than zero.</span>
+              <span class="step">4. If num is greater than zero, display the message "Positive".</span>
+              <span class="step">5. Otherwise, display the message "Not Positive".</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a21">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a21"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> num
+    <span class="kw">IF</span> num <span class="op">&gt;</span> 0 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Positive"
+    <span class="kw">ELSE</span>
+        <span class="kw">DISPLAY</span> "Not Positive"
+    <span class="kw">END IF</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  num = 7
+Output: Positive
+
+Input:  num = -3
+Output: Not Positive</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A22 -->
+      <article class="algo-card" data-search="negative or not condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A22</div>
+          <div class="algo-title">Negative or Not</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a number and display whether it is negative or not.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter a number and store it as num.</span>
+              <span class="step">3. Check whether num is less than zero.</span>
+              <span class="step">4. If num is less than zero, display the message "Negative".</span>
+              <span class="step">5. Otherwise, display the message "Not Negative".</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a22">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a22"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> num
+    <span class="kw">IF</span> num <span class="op">&lt;</span> 0 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Negative"
+    <span class="kw">ELSE</span>
+        <span class="kw">DISPLAY</span> "Not Negative"
+    <span class="kw">END IF</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  num = -5
+Output: Negative
+
+Input:  num = 4
+Output: Not Negative</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A23 -->
+      <article class="algo-card" data-search="even or odd condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A23</div>
+          <div class="algo-title">Even or Odd</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a number and check whether it is even or odd.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter a number and store it as num.</span>
+              <span class="step">3. Compute the remainder when num is divided by 2.</span>
+              <span class="step">4. If the remainder is 0, display "Even".</span>
+              <span class="step">5. Otherwise, display "Odd".</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a23">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a23"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> num
+    <span class="kw">IF</span> num <span class="op">MOD</span> 2 <span class="op">=</span> 0 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Even"
+    <span class="kw">ELSE</span>
+        <span class="kw">DISPLAY</span> "Odd"
+    <span class="kw">END IF</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  num = 14
+Output: Even
+
+Input:  num = 9
+Output: Odd</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A24 -->
+      <article class="algo-card" data-search="pass fail mark condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A24</div>
+          <div class="algo-title">Pass or Fail</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a student's mark and display whether the student has passed (pass mark = 35).</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter the student's mark and store it as mark.</span>
+              <span class="step">3. Check whether mark is greater than or equal to 35.</span>
+              <span class="step">4. If mark is at least 35, display the message "Pass".</span>
+              <span class="step">5. Otherwise, display the message "Fail".</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a24">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a24"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> mark
+    <span class="kw">IF</span> mark <span class="op">≥</span> 35 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Pass"
+    <span class="kw">ELSE</span>
+        <span class="kw">DISPLAY</span> "Fail"
+    <span class="kw">END IF</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  mark = 72
+Output: Pass
+
+Input:  mark = 28
+Output: Fail</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A25 -->
+      <article class="algo-card" data-search="voting eligibility age 18 condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A25</div>
+          <div class="algo-title">Eligible to Vote</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a person's age and check whether they are eligible to vote (minimum age = 18).</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter their age.</span>
+              <span class="step">3. Check whether age is at least 18.</span>
+              <span class="step">4. If yes, display "Eligible to Vote".</span>
+              <span class="step">5. Otherwise, display "Not Eligible to Vote".</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a25">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a25"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> age
+    <span class="kw">IF</span> age <span class="op">≥</span> 18 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Eligible to Vote"
+    <span class="kw">ELSE</span>
+        <span class="kw">DISPLAY</span> "Not Eligible to Vote"
+    <span class="kw">END IF</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  age = 22
+Output: Eligible to Vote
+
+Input:  age = 15
+Output: Not Eligible to Vote</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A26 -->
+      <article class="algo-card" data-search="senior citizen age 60 condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A26</div>
+          <div class="algo-title">Senior Citizen or Not</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a person's age and check whether they are a senior citizen (minimum age = 60).</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter their age.</span>
+              <span class="step">3. Check whether age is at least 60.</span>
+              <span class="step">4. If yes, display "Senior Citizen".</span>
+              <span class="step">5. Otherwise, display "Not a Senior Citizen".</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a26">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a26"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> age
+    <span class="kw">IF</span> age <span class="op">≥</span> 60 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Senior Citizen"
+    <span class="kw">ELSE</span>
+        <span class="kw">DISPLAY</span> "Not a Senior Citizen"
+    <span class="kw">END IF</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  age = 65
+Output: Senior Citizen
+
+Input:  age = 45
+Output: Not a Senior Citizen</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A27 -->
+      <article class="algo-card" data-search="divisible by 5 condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A27</div>
+          <div class="algo-title">Divisible by 5 or Not</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a number and check whether it is divisible by 5.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter a number.</span>
+              <span class="step">3. Compute the remainder when num is divided by 5.</span>
+              <span class="step">4. If the remainder is 0, display "Divisible by 5".</span>
+              <span class="step">5. Otherwise, display "Not Divisible by 5".</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a27">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a27"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> num
+    <span class="kw">IF</span> num <span class="op">MOD</span> 5 <span class="op">=</span> 0 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Divisible by 5"
+    <span class="kw">ELSE</span>
+        <span class="kw">DISPLAY</span> "Not Divisible by 5"
+    <span class="kw">END IF</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  num = 35
+Output: Divisible by 5
+
+Input:  num = 42
+Output: Not Divisible by 5</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A28 -->
+      <article class="algo-card" data-search="greater than 100 condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A28</div>
+          <div class="algo-title">Greater Than 100 or Not</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a number and check whether it is greater than 100.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter a number.</span>
+              <span class="step">3. Check whether num is greater than 100.</span>
+              <span class="step">4. If yes, display "Greater than 100".</span>
+              <span class="step">5. Otherwise, display "Not greater than 100".</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a28">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a28"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> num
+    <span class="kw">IF</span> num <span class="op">&gt;</span> 100 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Greater than 100"
+    <span class="kw">ELSE</span>
+        <span class="kw">DISPLAY</span> "Not greater than 100"
+    <span class="kw">END IF</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  num = 150
+Output: Greater than 100
+
+Input:  num = 75
+Output: Not greater than 100</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A29 -->
+      <article class="algo-card" data-search="temperature above 30 condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A29</div>
+          <div class="algo-title">Temperature Above 30°C</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read the temperature and check whether it is above 30°C.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter the temperature.</span>
+              <span class="step">3. Check whether temp is greater than 30.</span>
+              <span class="step">4. If yes, display "Above 30°C".</span>
+              <span class="step">5. Otherwise, display "Not Above 30°C".</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a29">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a29"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> temp
+    <span class="kw">IF</span> temp <span class="op">&gt;</span> 30 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Above 30°C"
+    <span class="kw">ELSE</span>
+        <span class="kw">DISPLAY</span> "Not Above 30°C"
+    <span class="kw">END IF</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  temp = 35
+Output: Above 30°C
+
+Input:  temp = 28
+Output: Not Above 30°C</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A30 -->
+      <article class="algo-card" data-search="discount qualification shopping amount condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A30</div>
+          <div class="algo-title">Discount Qualification</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read the shopping amount and check whether the customer qualifies for a discount (minimum purchase = ₹1000).</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter the shopping amount.</span>
+              <span class="step">3. Check whether amount is at least 1000.</span>
+              <span class="step">4. If yes, display "Qualifies for Discount".</span>
+              <span class="step">5. Otherwise, display "Does Not Qualify".</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a30">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a30"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> amount
+    <span class="kw">IF</span> amount <span class="op">≥</span> 1000 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Qualifies for Discount"
+    <span class="kw">ELSE</span>
+        <span class="kw">DISPLAY</span> "Does Not Qualify"
+    <span class="kw">END IF</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  amount = 1500
+Output: Qualifies for Discount
+
+Input:  amount = 800
+Output: Does Not Qualify</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A31 -->
+      <article class="algo-card" data-search="adult minor age condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A31</div>
+          <div class="algo-title">Adult or Minor</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a person's age and check whether they are an adult (18 or above) or a minor.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter their age.</span>
+              <span class="step">3. Check whether age is at least 18.</span>
+              <span class="step">4. If yes, display "Adult".</span>
+              <span class="step">5. Otherwise, display "Minor".</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a31">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a31"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> age
+    <span class="kw">IF</span> age <span class="op">≥</span> 18 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Adult"
+    <span class="kw">ELSE</span>
+        <span class="kw">DISPLAY</span> "Minor"
+    <span class="kw">END IF</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  age = 22
+Output: Adult
+
+Input:  age = 14
+Output: Minor</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A32 -->
+      <article class="algo-card" data-search="salary high regular condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A32</div>
+          <div class="algo-title">High Salary or Regular Salary</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read the salary and classify it as high (above ₹50,000) or regular.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter the salary.</span>
+              <span class="step">3. Check whether salary is greater than 50000.</span>
+              <span class="step">4. If yes, display "High Salary".</span>
+              <span class="step">5. Otherwise, display "Regular Salary".</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a32">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a32"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> salary
+    <span class="kw">IF</span> salary <span class="op">&gt;</span> 50000 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "High Salary"
+    <span class="kw">ELSE</span>
+        <span class="kw">DISPLAY</span> "Regular Salary"
+    <span class="kw">END IF</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  salary = 60000
+Output: High Salary
+
+Input:  salary = 45000
+Output: Regular Salary</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A33 -->
+      <article class="algo-card" data-search="over speed within limit condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A33</div>
+          <div class="algo-title">Over Speed or Within Limit</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read the speed of a vehicle and classify it as over speed (above 60 km/h) or within limit.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter the speed.</span>
+              <span class="step">3. Check whether speed is greater than 60.</span>
+              <span class="step">4. If yes, display "Over Speed".</span>
+              <span class="step">5. Otherwise, display "Within Limit".</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a33">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a33"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> speed
+    <span class="kw">IF</span> speed <span class="op">&gt;</span> 60 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Over Speed"
+    <span class="kw">ELSE</span>
+        <span class="kw">DISPLAY</span> "Within Limit"
+    <span class="kw">END IF</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  speed = 75
+Output: Over Speed
+
+Input:  speed = 55
+Output: Within Limit</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A34 -->
+      <article class="algo-card" data-search="battery low normal condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A34</div>
+          <div class="algo-title">Battery Low or Normal</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read the battery percentage and check whether it is low (≤ 20%) or normal.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter the battery percentage.</span>
+              <span class="step">3. Check whether battery is at most 20.</span>
+              <span class="step">4. If yes, display "Low Battery".</span>
+              <span class="step">5. Otherwise, display "Normal Battery".</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a34">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a34"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> battery
+    <span class="kw">IF</span> battery <span class="op">≤</span> 20 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Low Battery"
+    <span class="kw">ELSE</span>
+        <span class="kw">DISPLAY</span> "Normal Battery"
+    <span class="kw">END IF</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  battery = 15
+Output: Low Battery
+
+Input:  battery = 80
+Output: Normal Battery</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A35 -->
+      <article class="algo-card" data-search="equal to zero condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A35</div>
+          <div class="algo-title">Equal to Zero</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a number and check whether it is equal to zero.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter a number.</span>
+              <span class="step">3. Check whether num equals zero.</span>
+              <span class="step">4. If yes, display "Equal to Zero".</span>
+              <span class="step">5. Otherwise, display "Not Equal to Zero".</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a35">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a35"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> num
+    <span class="kw">IF</span> num <span class="op">=</span> 0 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Equal to Zero"
+    <span class="kw">ELSE</span>
+        <span class="kw">DISPLAY</span> "Not Equal to Zero"
+    <span class="kw">END IF</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  num = 0
+Output: Equal to Zero
+
+Input:  num = 7
+Output: Not Equal to Zero</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A36 — COMPLEX: Grade -->
+      <article class="algo-card" data-search="grade abcdf multiple conditions nested algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A36</div>
+          <div class="algo-title">Grade A / B / C / D / F ⭐</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a student's mark (0–100) and assign a grade: A (≥90), B (≥75), C (≥60), D (≥35), or F (below 35).</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter the student's mark.</span>
+              <span class="step">3. If the mark is 90 or above, assign grade A.</span>
+              <span class="step">4. Otherwise, if the mark is 75 or above, assign grade B.</span>
+              <span class="step">5. Otherwise, if the mark is 60 or above, assign grade C.</span>
+              <span class="step">6. Otherwise, if the mark is 35 or above, assign grade D.</span>
+              <span class="step">7. Otherwise, assign grade F.</span>
+              <span class="step">8. Display the assigned grade.</span>
+              <span class="step">9. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a36">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a36"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> mark
+    <span class="kw">IF</span> mark <span class="op">≥</span> 90 <span class="kw">THEN</span>
+        grade <span class="op">←</span> "A"
+    <span class="kw">ELSE IF</span> mark <span class="op">≥</span> 75 <span class="kw">THEN</span>
+        grade <span class="op">←</span> "B"
+    <span class="kw">ELSE IF</span> mark <span class="op">≥</span> 60 <span class="kw">THEN</span>
+        grade <span class="op">←</span> "C"
+    <span class="kw">ELSE IF</span> mark <span class="op">≥</span> 35 <span class="kw">THEN</span>
+        grade <span class="op">←</span> "D"
+    <span class="kw">ELSE</span>
+        grade <span class="op">←</span> "F"
+    <span class="kw">END IF</span>
+    <span class="kw">DISPLAY</span> grade
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  mark = 82
+Output: Grade = B
+
+Input:  mark = 28
+Output: Grade = F</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A37 — COMPLEX: Positive/Negative/Zero -->
+      <article class="algo-card" data-search="positive negative zero three-way condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A37</div>
+          <div class="algo-title">Positive / Negative / Zero ⭐</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a number and determine whether it is positive, negative, or zero.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter a number.</span>
+              <span class="step">3. Check whether num is greater than zero.</span>
+              <span class="step">4. If yes, display "Positive".</span>
+              <span class="step">5. Otherwise, check whether num is less than zero.</span>
+              <span class="step">6. If yes, display "Negative".</span>
+              <span class="step">7. Otherwise, display "Zero".</span>
+              <span class="step">8. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a37">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a37"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> num
+    <span class="kw">IF</span> num <span class="op">&gt;</span> 0 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Positive"
+    <span class="kw">ELSE IF</span> num <span class="op">&lt;</span> 0 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Negative"
+    <span class="kw">ELSE</span>
+        <span class="kw">DISPLAY</span> "Zero"
+    <span class="kw">END IF</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  num = 5
+Output: Positive
+
+Input:  num = -3
+Output: Negative
+
+Input:  num = 0
+Output: Zero</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A38 — COMPLEX: Largest of Three -->
+      <article class="algo-card" data-search="largest three numbers nested condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A38</div>
+          <div class="algo-title">Largest of Three Numbers ⭐</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read three numbers and determine the largest among them using nested conditions.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter three numbers: a, b, and c.</span>
+              <span class="step">3. Check whether a is greater than or equal to both b and c.</span>
+              <span class="step">4. If yes, display a as the largest.</span>
+              <span class="step">5. Otherwise, check whether b is greater than or equal to c.</span>
+              <span class="step">6. If yes, display b as the largest.</span>
+              <span class="step">7. Otherwise, display c as the largest.</span>
+              <span class="step">8. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a38">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a38"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> a, b, c
+    <span class="kw">IF</span> a <span class="op">≥</span> b <span class="kw">AND</span> a <span class="op">≥</span> c <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> a
+    <span class="kw">ELSE IF</span> b <span class="op">≥</span> c <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> b
+    <span class="kw">ELSE</span>
+        <span class="kw">DISPLAY</span> c
+    <span class="kw">END IF</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  a = 12, b = 45, c = 30
+Output: Largest = 45
+
+Input:  a = 9, b = 4, c = 7
+Output: Largest = 9</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A39 — COMPLEX: BMI Category -->
+      <article class="algo-card" data-search="bmi category ranges multiple conditions algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A39</div>
+          <div class="algo-title">BMI Category ⭐</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read weight (kg) and height (m), compute BMI, and classify into Underweight (&lt;18.5), Normal (18.5–24.9), Overweight (25–29.9), or Obese (≥30).</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter weight and height.</span>
+              <span class="step">3. Compute BMI by dividing weight by the square of height.</span>
+              <span class="step">4. If BMI is less than 18.5, display "Underweight".</span>
+              <span class="step">5. Otherwise, if BMI is less than 25, display "Normal".</span>
+              <span class="step">6. Otherwise, if BMI is less than 30, display "Overweight".</span>
+              <span class="step">7. Otherwise, display "Obese".</span>
+              <span class="step">8. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a39">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a39"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> weight, height
+    BMI <span class="op">←</span> weight <span class="op">÷</span> (height <span class="op">×</span> height)
+    <span class="kw">IF</span> BMI <span class="op">&lt;</span> 18.5 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Underweight"
+    <span class="kw">ELSE IF</span> BMI <span class="op">&lt;</span> 25 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Normal"
+    <span class="kw">ELSE IF</span> BMI <span class="op">&lt;</span> 30 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Overweight"
+    <span class="kw">ELSE</span>
+        <span class="kw">DISPLAY</span> "Obese"
+    <span class="kw">END IF</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  weight = 70, height = 1.75
+Output: BMI = 22.86 → Normal
+
+Input:  weight = 95, height = 1.70
+Output: BMI = 32.87 → Obese</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A40 — COMPLEX: Voting Eligibility -->
+      <article class="algo-card" data-search="voting eligibility age citizenship compound condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A40</div>
+          <div class="algo-title">Voting Eligibility (Age + Citizenship) ⭐</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a person's age and citizenship status. A person is eligible to vote only if they are at least 18 years old AND a citizen of the country.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter their age and citizenship status (yes/no).</span>
+              <span class="step">3. Check whether age is at least 18 AND citizenship is "yes".</span>
+              <span class="step">4. If both conditions are true, display "Eligible to Vote".</span>
+              <span class="step">5. Otherwise, display "Not Eligible to Vote".</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a40">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a40"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> age, citizen
+    <span class="kw">IF</span> age <span class="op">≥</span> 18 <span class="kw">AND</span> citizen <span class="op">=</span> "yes" <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Eligible to Vote"
+    <span class="kw">ELSE</span>
+        <span class="kw">DISPLAY</span> "Not Eligible to Vote"
+    <span class="kw">END IF</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  age = 25, citizen = yes
+Output: Eligible to Vote
+
+Input:  age = 25, citizen = no
+Output: Not Eligible to Vote
+
+Input:  age = 16, citizen = yes
+Output: Not Eligible to Vote</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <p style="text-align:center; color:var(--text-muted); padding:30px; font-size:14px;">
+        ✅ Module 2 complete — 20 algorithms (15 simple + 5 complex).
+      </p>
+    </section>
+    </section>
+
+    <!-- ===== MODULE 3 ===== -->
+        <!-- ===== MODULE 3 ===== -->
+    <section id="m3">
+      <div class="section-header">
+        <h2>Module 3 — Repetition Algorithms</h2>
+        <span class="level-tag">20 Algorithms</span>
+      </div>
+
+      <!-- A41 -->
+      <article class="algo-card" data-search="display 1 to N loop repetition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A41</div>
+          <div class="algo-title">Display Numbers 1 to N</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a positive number N and display all numbers from 1 to N.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter a positive number N.</span>
+              <span class="step">3. Initialize a counter i to 1.</span>
+              <span class="step">4. Repeat the following steps as long as i is less than or equal to N:</span>
+              <span class="step">     a. Display the current value of i.</span>
+              <span class="step">     b. Increase i by 1.</span>
+              <span class="step">5. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a41">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a41"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> N
+    i <span class="op">←</span> 1
+    <span class="kw">WHILE</span> i <span class="op">≤</span> N <span class="kw">DO</span>
+        <span class="kw">DISPLAY</span> i
+        i <span class="op">←</span> i + 1
+    <span class="kw">END WHILE</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  N = 5
+Output: 1
+        2
+        3
+        4
+        5</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A42 -->
+      <article class="algo-card" data-search="display N to 1 reverse loop repetition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A42</div>
+          <div class="algo-title">Display Numbers N to 1</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a positive number N and display numbers from N down to 1 in reverse order.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter a positive number N.</span>
+              <span class="step">3. Initialize a counter i to N.</span>
+              <span class="step">4. Repeat the following steps as long as i is at least 1:</span>
+              <span class="step">     a. Display the current value of i.</span>
+              <span class="step">     b. Decrease i by 1.</span>
+              <span class="step">5. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a42">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a42"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> N
+    i <span class="op">←</span> N
+    <span class="kw">WHILE</span> i <span class="op">≥</span> 1 <span class="kw">DO</span>
+        <span class="kw">DISPLAY</span> i
+        i <span class="op">←</span> i <span class="op">−</span> 1
+    <span class="kw">END WHILE</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  N = 5
+Output: 5
+        4
+        3
+        2
+        1</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A43 -->
+      <article class="algo-card" data-search="even numbers 1 to 20 loop step 2 algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A43</div>
+          <div class="algo-title">Display Even Numbers 1 to 20</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Display all even numbers between 1 and 20.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Initialize a counter i to 2.</span>
+              <span class="step">3. Repeat the following steps as long as i is at most 20:</span>
+              <span class="step">     a. Display the current value of i.</span>
+              <span class="step">     b. Increase i by 2.</span>
+              <span class="step">4. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a43">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a43"><span class="kw">BEGIN</span>
+    i <span class="op">←</span> 2
+    <span class="kw">WHILE</span> i <span class="op">≤</span> 20 <span class="kw">DO</span>
+        <span class="kw">DISPLAY</span> i
+        i <span class="op">←</span> i + 2
+    <span class="kw">END WHILE</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Output: 2
+        4
+        6
+        8
+        10
+        12
+        14
+        16
+        18
+        20</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A44 -->
+      <article class="algo-card" data-search="sum of 1 to N loop accumulator algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A44</div>
+          <div class="algo-title">Sum of Numbers 1 to N</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a positive number N and compute the sum 1 + 2 + 3 + … + N.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter a positive number N.</span>
+              <span class="step">3. Initialize sum to 0 and a counter i to 1.</span>
+              <span class="step">4. Repeat the following steps as long as i is at most N:</span>
+              <span class="step">     a. Add the current value of i to sum.</span>
+              <span class="step">     b. Increase i by 1.</span>
+              <span class="step">5. Display the final sum.</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a44">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a44"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> N
+    sum <span class="op">←</span> 0
+    i <span class="op">←</span> 1
+    <span class="kw">WHILE</span> i <span class="op">≤</span> N <span class="kw">DO</span>
+        sum <span class="op">←</span> sum + i
+        i <span class="op">←</span> i + 1
+    <span class="kw">END WHILE</span>
+    <span class="kw">DISPLAY</span> sum
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  N = 5
+Output: Sum = 15
+
+Input:  N = 10
+Output: Sum = 55</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A45 -->
+      <article class="algo-card" data-search="sum of even numbers 1 to N loop condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A45</div>
+          <div class="algo-title">Sum of Even Numbers 1 to N</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a positive number N and compute the sum of all even numbers between 1 and N.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter a positive number N.</span>
+              <span class="step">3. Initialize sum to 0 and a counter i to 1.</span>
+              <span class="step">4. Repeat the following steps as long as i is at most N:</span>
+              <span class="step">     a. Check whether i is even (i MOD 2 = 0).</span>
+              <span class="step">     b. If i is even, add i to sum.</span>
+              <span class="step">     c. Increase i by 1.</span>
+              <span class="step">5. Display the final sum.</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a45">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a45"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> N
+    sum <span class="op">←</span> 0
+    i <span class="op">←</span> 1
+    <span class="kw">WHILE</span> i <span class="op">≤</span> N <span class="kw">DO</span>
+        <span class="kw">IF</span> i <span class="op">MOD</span> 2 <span class="op">=</span> 0 <span class="kw">THEN</span>
+            sum <span class="op">←</span> sum + i
+        <span class="kw">END IF</span>
+        i <span class="op">←</span> i + 1
+    <span class="kw">END WHILE</span>
+    <span class="kw">DISPLAY</span> sum
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  N = 10
+Output: Sum = 30
+
+Input:  N = 20
+Output: Sum = 110</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A46 -->
+      <article class="algo-card" data-search="sum of odd numbers 1 to N loop condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A46</div>
+          <div class="algo-title">Sum of Odd Numbers 1 to N</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a positive number N and compute the sum of all odd numbers between 1 and N.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter a positive number N.</span>
+              <span class="step">3. Initialize sum to 0 and a counter i to 1.</span>
+              <span class="step">4. Repeat the following steps as long as i is at most N:</span>
+              <span class="step">     a. Check whether i is odd (i MOD 2 ≠ 0).</span>
+              <span class="step">     b. If i is odd, add i to sum.</span>
+              <span class="step">     c. Increase i by 1.</span>
+              <span class="step">5. Display the final sum.</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a46">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a46"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> N
+    sum <span class="op">←</span> 0
+    i <span class="op">←</span> 1
+    <span class="kw">WHILE</span> i <span class="op">≤</span> N <span class="kw">DO</span>
+        <span class="kw">IF</span> i <span class="op">MOD</span> 2 <span class="op">≠</span> 0 <span class="kw">THEN</span>
+            sum <span class="op">←</span> sum + i
+        <span class="kw">END IF</span>
+        i <span class="op">←</span> i + 1
+    <span class="kw">END WHILE</span>
+    <span class="kw">DISPLAY</span> sum
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  N = 10
+Output: Sum = 25
+
+Input:  N = 9
+Output: Sum = 25</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A47 -->
+      <article class="algo-card" data-search="sum of squares 1 to N loop algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A47</div>
+          <div class="algo-title">Sum of Squares 1 to N</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a positive number N and compute the sum 1² + 2² + 3² + … + N².</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter a positive number N.</span>
+              <span class="step">3. Initialize sum to 0 and a counter i to 1.</span>
+              <span class="step">4. Repeat the following steps as long as i is at most N:</span>
+              <span class="step">     a. Compute the square of i.</span>
+              <span class="step">     b. Add the square to sum.</span>
+              <span class="step">     c. Increase i by 1.</span>
+              <span class="step">5. Display the final sum.</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a47">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a47"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> N
+    sum <span class="op">←</span> 0
+    i <span class="op">←</span> 1
+    <span class="kw">WHILE</span> i <span class="op">≤</span> N <span class="kw">DO</span>
+        sum <span class="op">←</span> sum + (i <span class="op">×</span> i)
+        i <span class="op">←</span> i + 1
+    <span class="kw">END WHILE</span>
+    <span class="kw">DISPLAY</span> sum
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  N = 4
+Output: Sum = 30
+
+Input:  N = 5
+Output: Sum = 55</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A48 -->
+      <article class="algo-card" data-search="sum of cubes 1 to N loop algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A48</div>
+          <div class="algo-title">Sum of Cubes 1 to N</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a positive number N and compute the sum 1³ + 2³ + 3³ + … + N³.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter a positive number N.</span>
+              <span class="step">3. Initialize sum to 0 and a counter i to 1.</span>
+              <span class="step">4. Repeat the following steps as long as i is at most N:</span>
+              <span class="step">     a. Compute the cube of i.</span>
+              <span class="step">     b. Add the cube to sum.</span>
+              <span class="step">     c. Increase i by 1.</span>
+              <span class="step">5. Display the final sum.</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a48">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a48"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> N
+    sum <span class="op">←</span> 0
+    i <span class="op">←</span> 1
+    <span class="kw">WHILE</span> i <span class="op">≤</span> N <span class="kw">DO</span>
+        sum <span class="op">←</span> sum + (i <span class="op">×</span> i <span class="op">×</span> i)
+        i <span class="op">←</span> i + 1
+    <span class="kw">END WHILE</span>
+    <span class="kw">DISPLAY</span> sum
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  N = 3
+Output: Sum = 36
+
+Input:  N = 4
+Output: Sum = 100</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A49 -->
+      <article class="algo-card" data-search="factorial loop product algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A49</div>
+          <div class="algo-title">Factorial of N</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a positive number N and compute its factorial (N!).</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter a positive number N.</span>
+              <span class="step">3. Initialize fact to 1 and a counter i to 1.</span>
+              <span class="step">4. Repeat the following steps as long as i is at most N:</span>
+              <span class="step">     a. Multiply fact by i.</span>
+              <span class="step">     b. Increase i by 1.</span>
+              <span class="step">5. Display the final factorial value.</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a49">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a49"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> N
+    fact <span class="op">←</span> 1
+    i <span class="op">←</span> 1
+    <span class="kw">WHILE</span> i <span class="op">≤</span> N <span class="kw">DO</span>
+        fact <span class="op">←</span> fact <span class="op">×</span> i
+        i <span class="op">←</span> i + 1
+    <span class="kw">END WHILE</span>
+    <span class="kw">DISPLAY</span> fact
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  N = 5
+Output: Factorial = 120
+
+Input:  N = 6
+Output: Factorial = 720</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A50 -->
+      <article class="algo-card" data-search="multiplication table loop algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A50</div>
+          <div class="algo-title">Multiplication Table of N</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a number N and display its multiplication table from 1 to 10.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter a number N.</span>
+              <span class="step">3. Initialize a counter i to 1.</span>
+              <span class="step">4. Repeat the following steps as long as i is at most 10:</span>
+              <span class="step">     a. Compute the product of N and i.</span>
+              <span class="step">     b. Display N, i, and the product in the form "N × i = product".</span>
+              <span class="step">     c. Increase i by 1.</span>
+              <span class="step">5. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a50">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a50"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> N
+    i <span class="op">←</span> 1
+    <span class="kw">WHILE</span> i <span class="op">≤</span> 10 <span class="kw">DO</span>
+        result <span class="op">←</span> N <span class="op">×</span> i
+        <span class="kw">DISPLAY</span> N, "×", i, "=", result
+        i <span class="op">←</span> i + 1
+    <span class="kw">END WHILE</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  N = 5
+Output: 5 × 1 = 5
+        5 × 2 = 10
+        5 × 3 = 15
+        ...
+        5 × 10 = 50</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A51 -->
+      <article class="algo-card" data-search="count even numbers 1 to N loop condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A51</div>
+          <div class="algo-title">Count Even Numbers 1 to N</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a positive number N and count how many even numbers exist between 1 and N.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter a positive number N.</span>
+              <span class="step">3. Initialize count to 0 and a counter i to 1.</span>
+              <span class="step">4. Repeat the following steps as long as i is at most N:</span>
+              <span class="step">     a. Check whether i is even.</span>
+              <span class="step">     b. If i is even, increase count by 1.</span>
+              <span class="step">     c. Increase i by 1.</span>
+              <span class="step">5. Display the final count.</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a51">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a51"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> N
+    count <span class="op">←</span> 0
+    i <span class="op">←</span> 1
+    <span class="kw">WHILE</span> i <span class="op">≤</span> N <span class="kw">DO</span>
+        <span class="kw">IF</span> i <span class="op">MOD</span> 2 <span class="op">=</span> 0 <span class="kw">THEN</span>
+            count <span class="op">←</span> count + 1
+        <span class="kw">END IF</span>
+        i <span class="op">←</span> i + 1
+    <span class="kw">END WHILE</span>
+    <span class="kw">DISPLAY</span> count
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  N = 10
+Output: Count = 5
+
+Input:  N = 20
+Output: Count = 10</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A52 -->
+      <article class="algo-card" data-search="count odd numbers 1 to N loop condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A52</div>
+          <div class="algo-title">Count Odd Numbers 1 to N</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a positive number N and count how many odd numbers exist between 1 and N.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter a positive number N.</span>
+              <span class="step">3. Initialize count to 0 and a counter i to 1.</span>
+              <span class="step">4. Repeat the following steps as long as i is at most N:</span>
+              <span class="step">     a
+  </main>
+</div>
+
+<footer>
+  <p><strong>Algorithms &amp; Pseudocode Portal</strong></p>
+  <p>Developed by the Department of Artificial Intelligence and Data Science</p>
+  <p><strong>R.V.S College of Engineering</strong></p>
+</footer>
+
+<button class="back-top" id="backTop" title="Back to top">↑</button>
+
+<script>
+  // ===== TOGGLE ALGO CARDS =====
+  document.querySelectorAll('.algo-head').forEach(head => {
+    head.addEventListener('click', () => {
+      head.parentElement.classList.toggle('open');
+    });
+  });
+
+  // ===== THEME TOGGLE =====
+  const themeToggle = document.getElementById('themeToggle');
+  const savedTheme = localStorage.getItem('algo-theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+  themeToggle.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('algo-theme', next);
+    themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
+  });
+
+  // ===== SIDEBAR NAVIGATION =====
+  document.querySelectorAll('.nav-item, .module-card').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = el.dataset.target;
+      if (!target) return;
+      const section = document.getElementById(target);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        const matchingNav = document.querySelector(`.nav-item[data-target="${target}"]`);
+        if (matchingNav) matchingNav.classList.add('active');
+        closeSidebar();
+      }
+    });
+  });
+
+  // ===== MOBILE SIDEBAR =====
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+  const menuToggle = document.getElementById('menuToggle');
+  function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('show'); }
+  function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('show'); }
+  menuToggle.addEventListener('click', openSidebar);
+  overlay.addEventListener('click', closeSidebar);
+
+  // ===== BACK TO TOP =====
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('show', window.scrollY > 400);
+  });
+  backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // ===== SEARCH =====
+  const searchBox = document.getElementById('searchBox');
+  searchBox.addEventListener('input', (e) => {
+    const q = e.target.value.toLowerCase().trim();
+    document.querySelectorAll('.algo-card').forEach(card => {
+      const title = card.querySelector('.algo-title')?.textContent.toLowerCase() || '';
+      const search = (card.dataset.search || '').toLowerCase();
+      const matches = !q || title.includes(q) || search.includes(q);
+      card.style.display = matches ? '' : 'none';
+    });
+  });
+
+  // ===== COPY PSEUDOCODE =====
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const targetId = btn.dataset.copy;
+      const el = document.getElementById(targetId);
+      if (!el) return;
+      const text = el.innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = '✓ Copied';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = '📋 Copy';
+          btn.classList.remove('copied');
+        }, 1800);
+      }).catch(() => {
+        // Fallback
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); btn.textContent = '✓ Copied'; } catch(e){}
+        document.body.removeChild(ta);
+        setTimeout(() => { btn.textContent = '📋 Copy'; }, 1800);
+      });
+    });
+  });
+
+  // ===== MARK AS DONE =====
+  const doneState = JSON.parse(localStorage.getItem('algo-done') || '{}');
+  document.querySelectorAll('.done-btn').forEach((btn, idx) => {
+    const key = 'a' + idx;
+    if (doneState[key]) { btn.classList.add('done'); btn.textContent = '✓ Done'; }
+    btn.addEventListener('click', () => {
+      doneState[key] = !doneState[key];
+      btn.classList.toggle('done');
+      btn.textContent = doneState[key] ? '✓ Done' : 'Mark as Done';
+      localStorage.setItem('algo-done', JSON.stringify(doneState));
+    });
+  });
+</script>
+</body>
+</html>
