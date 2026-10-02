@@ -3241,7 +3241,520 @@ Output: Count = 10</div>
               <span class="step">2. Ask the user to enter a positive number N.</span>
               <span class="step">3. Initialize count to 0 and a counter i to 1.</span>
               <span class="step">4. Repeat the following steps as long as i is at most N:</span>
-              <span class="step">     a
+              <span class="step">     a. Check whether i is odd.</span>
+              <span class="step">     b. If i is odd, increase count by 1.</span>
+              <span class="step">     c. Increase i by 1.</span>
+              <span class="step">5. Display the final count.</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a52">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a52"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> N
+    count <span class="op">←</span> 0
+    i <span class="op">←</span> 1
+    <span class="kw">WHILE</span> i <span class="op">≤</span> N <span class="kw">DO</span>
+        <span class="kw">IF</span> i <span class="op">MOD</span> 2 <span class="op">≠</span> 0 <span class="kw">THEN</span>
+            count <span class="op">←</span> count + 1
+        <span class="kw">END IF</span>
+        i <span class="op">←</span> i + 1
+    <span class="kw">END WHILE</span>
+    <span class="kw">DISPLAY</span> count
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  N = 10
+Output: Count = 5
+
+Input:  N = 15
+Output: Count = 8</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A53 -->
+      <article class="algo-card" data-search="largest among N numbers loop max algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A53</div>
+          <div class="algo-title">Largest Among N Numbers</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read N numbers and determine the largest among them.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user how many numbers (N) they want to enter.</span>
+              <span class="step">3. Read the first number and store it as largest.</span>
+              <span class="step">4. Initialize a counter i to 2.</span>
+              <span class="step">5. Repeat the following steps as long as i is at most N:</span>
+              <span class="step">     a. Read the next number.</span>
+              <span class="step">     b. If the number is greater than largest, update largest with the new number.</span>
+              <span class="step">     c. Increase i by 1.</span>
+              <span class="step">6. Display the largest number.</span>
+              <span class="step">7. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a53">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a53"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> N
+    <span class="kw">READ</span> largest
+    i <span class="op">←</span> 2
+    <span class="kw">WHILE</span> i <span class="op">≤</span> N <span class="kw">DO</span>
+        <span class="kw">READ</span> num
+        <span class="kw">IF</span> num <span class="op">&gt;</span> largest <span class="kw">THEN</span>
+            largest <span class="op">←</span> num
+        <span class="kw">END IF</span>
+        i <span class="op">←</span> i + 1
+    <span class="kw">END WHILE</span>
+    <span class="kw">DISPLAY</span> largest
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  N = 4
+        numbers: 12, 45, 7, 30
+Output: Largest = 45</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A54 -->
+      <article class="algo-card" data-search="smallest among N numbers loop min algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A54</div>
+          <div class="algo-title">Smallest Among N Numbers</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read N numbers and determine the smallest among them.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user how many numbers (N) they want to enter.</span>
+              <span class="step">3. Read the first number and store it as smallest.</span>
+              <span class="step">4. Initialize a counter i to 2.</span>
+              <span class="step">5. Repeat the following steps as long as i is at most N:</span>
+              <span class="step">     a. Read the next number.</span>
+              <span class="step">     b. If the number is less than smallest, update smallest with the new number.</span>
+              <span class="step">     c. Increase i by 1.</span>
+              <span class="step">6. Display the smallest number.</span>
+              <span class="step">7. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a54">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a54"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> N
+    <span class="kw">READ</span> smallest
+    i <span class="op">←</span> 2
+    <span class="kw">WHILE</span> i <span class="op">≤</span> N <span class="kw">DO</span>
+        <span class="kw">READ</span> num
+        <span class="kw">IF</span> num <span class="op">&lt;</span> smallest <span class="kw">THEN</span>
+            smallest <span class="op">←</span> num
+        <span class="kw">END IF</span>
+        i <span class="op">←</span> i + 1
+    <span class="kw">END WHILE</span>
+    <span class="kw">DISPLAY</span> smallest
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  N = 4
+        numbers: 12, 45, 7, 30
+Output: Smallest = 7</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A55 -->
+      <article class="algo-card" data-search="sum of N user numbers loop algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A55</div>
+          <div class="algo-title">Sum of N User-Entered Numbers</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read N numbers from the user and compute their total sum.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user how many numbers (N) they want to enter.</span>
+              <span class="step">3. Initialize sum to 0 and a counter i to 1.</span>
+              <span class="step">4. Repeat the following steps as long as i is at most N:</span>
+              <span class="step">     a. Read a number from the user.</span>
+              <span class="step">     b. Add the number to sum.</span>
+              <span class="step">     c. Increase i by 1.</span>
+              <span class="step">5. Display the final sum.</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a55">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a55"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> N
+    sum <span class="op">←</span> 0
+    i <span class="op">←</span> 1
+    <span class="kw">WHILE</span> i <span class="op">≤</span> N <span class="kw">DO</span>
+        <span class="kw">READ</span> num
+        sum <span class="op">←</span> sum + num
+        i <span class="op">←</span> i + 1
+    <span class="kw">END WHILE</span>
+    <span class="kw">DISPLAY</span> sum
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  N = 3
+        numbers: 10, 20, 30
+Output: Sum = 60</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A56 -->
+      <article class="algo-card" data-search="average of N marks loop algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A56</div>
+          <div class="algo-title">Average of N Marks</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read N student marks and compute their average.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user how many marks (N) they want to enter.</span>
+              <span class="step">3. Initialize sum to 0 and a counter i to 1.</span>
+              <span class="step">4. Repeat the following steps as long as i is at most N:</span>
+              <span class="step">     a. Read a mark.</span>
+              <span class="step">     b. Add the mark to sum.</span>
+              <span class="step">     c. Increase i by 1.</span>
+              <span class="step">5. Compute the average by dividing sum by N.</span>
+              <span class="step">6. Display the average.</span>
+              <span class="step">7. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a56">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a56"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> N
+    sum <span class="op">←</span> 0
+    i <span class="op">←</span> 1
+    <span class="kw">WHILE</span> i <span class="op">≤</span> N <span class="kw">DO</span>
+        <span class="kw">READ</span> mark
+        sum <span class="op">←</span> sum + mark
+        i <span class="op">←</span> i + 1
+    <span class="kw">END WHILE</span>
+    average <span class="op">←</span> sum <span class="op">÷</span> N
+    <span class="kw">DISPLAY</span> average
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  N = 3
+        marks: 80, 75, 90
+Output: Average = 81.67</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A57 -->
+      <article class="algo-card" data-search="count passed students loop condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A57</div>
+          <div class="algo-title">Count Passed Students</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read N student marks and count how many students passed (mark ≥ 35).</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user how many students (N) they want to enter.</span>
+              <span class="step">3. Initialize passed to 0 and a counter i to 1.</span>
+              <span class="step">4. Repeat the following steps as long as i is at most N:</span>
+              <span class="step">     a. Read a student's mark.</span>
+              <span class="step">     b. If the mark is at least 35, increase passed by 1.</span>
+              <span class="step">     c. Increase i by 1.</span>
+              <span class="step">5. Display the total number of students who passed.</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a57">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a57"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> N
+    passed <span class="op">←</span> 0
+    i <span class="op">←</span> 1
+    <span class="kw">WHILE</span> i <span class="op">≤</span> N <span class="kw">DO</span>
+        <span class="kw">READ</span> mark
+        <span class="kw">IF</span> mark <span class="op">≥</span> 35 <span class="kw">THEN</span>
+            passed <span class="op">←</span> passed + 1
+        <span class="kw">END IF</span>
+        i <span class="op">←</span> i + 1
+    <span class="kw">END WHILE</span>
+    <span class="kw">DISPLAY</span> passed
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  N = 4
+        marks: 72, 28, 45, 30
+Output: Passed = 2</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A58 -->
+      <article class="algo-card" data-search="count failed students loop condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A58</div>
+          <div class="algo-title">Count Failed Students</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read N student marks and count how many students failed (mark &lt; 35).</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user how many students (N) they want to enter.</span>
+              <span class="step">3. Initialize failed to 0 and a counter i to 1.</span>
+              <span class="step">4. Repeat the following steps as long as i is at most N:</span>
+              <span class="step">     a. Read a student's mark.</span>
+              <span class="step">     b. If the mark is less than 35, increase failed by 1.</span>
+              <span class="step">     c. Increase i by 1.</span>
+              <span class="step">5. Display the total number of students who failed.</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a58">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a58"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> N
+    failed <span class="op">←</span> 0
+    i <span class="op">←</span> 1
+    <span class="kw">WHILE</span> i <span class="op">≤</span> N <span class="kw">DO</span>
+        <span class="kw">READ</span> mark
+        <span class="kw">IF</span> mark <span class="op">&lt;</span> 35 <span class="kw">THEN</span>
+            failed <span class="op">←</span> failed + 1
+        <span class="kw">END IF</span>
+        i <span class="op">←</span> i + 1
+    <span class="kw">END WHILE</span>
+    <span class="kw">DISPLAY</span> failed
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  N = 4
+        marks: 72, 28, 45, 30
+Output: Failed = 2</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A59 -->
+      <article class="algo-card" data-search="reverse a number loop mod div algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A59</div>
+          <div class="algo-title">Reverse a Number</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read a positive integer and display its digits in reverse order.</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user to enter a positive integer and store it as num.</span>
+              <span class="step">3. Initialize rev to 0.</span>
+              <span class="step">4. Repeat the following steps as long as num is greater than 0:</span>
+              <span class="step">     a. Extract the last digit of num using num MOD 10.</span>
+              <span class="step">     b. Update rev to (rev × 10) + digit.</span>
+              <span class="step">     c. Remove the last digit from num using num ÷ 10.</span>
+              <span class="step">5. Display the reversed number.</span>
+              <span class="step">6. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a59">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a59"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> num
+    rev <span class="op">←</span> 0
+    <span class="kw">WHILE</span> num <span class="op">&gt;</span> 0 <span class="kw">DO</span>
+        digit <span class="op">←</span> num <span class="op">MOD</span> 10
+        rev <span class="op">←</span> (rev <span class="op">×</span> 10) + digit
+        num <span class="op">←</span> num <span class="op">÷</span> 10
+    <span class="kw">END WHILE</span>
+    <span class="kw">DISPLAY</span> rev
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  num = 12345
+Output: Reversed = 54321
+
+Input:  num = 700
+Output: Reversed = 7</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- A60 — COMPLEX: Total marks + average + classification -->
+      <article class="algo-card" data-search="total marks average N students complex loop condition algorithm pseudocode">
+        <div class="algo-head">
+          <div class="algo-num">A60</div>
+          <div class="algo-title">Total, Average &amp; Performance of N Students ⭐</div>
+          <div class="toggle-icon">▾</div>
+        </div>
+        <div class="algo-body">
+          <div class="algo-section">
+            <div class="section-label">📝 Problem</div>
+            <div class="problem-text">Read N student marks. Compute the total and average. Then classify the class average as "Excellent" (≥85), "Good" (≥70), "Average" (≥50), or "Poor" (below 50).</div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">🧠 Algorithm</div>
+            <div class="algo-box">
+              <span class="step">1. Start the procedure.</span>
+              <span class="step">2. Ask the user how many students (N) they want to enter.</span>
+              <span class="step">3. Initialize total to 0 and a counter i to 1.</span>
+              <span class="step">4. Repeat the following steps as long as i is at most N:</span>
+              <span class="step">     a. Read a student's mark.</span>
+              <span class="step">     b. Add the mark to total.</span>
+              <span class="step">     c. Increase i by 1.</span>
+              <span class="step">5. Compute the average by dividing total by N.</span>
+              <span class="step">6. Display the total and the average.</span>
+              <span class="step">7. If the average is at least 85, display "Excellent".</span>
+              <span class="step">8. Otherwise, if the average is at least 70, display "Good".</span>
+              <span class="step">9. Otherwise, if the average is at least 50, display "Average".</span>
+              <span class="step">10. Otherwise, display "Poor".</span>
+              <span class="step">11. End the procedure.</span>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">💻 Pseudocode</div>
+            <div class="pseudo-wrap">
+              <button class="copy-btn" data-copy="pseudo-a60">📋 Copy</button>
+              <div class="pseudo-box" id="pseudo-a60"><span class="kw">BEGIN</span>
+    <span class="kw">READ</span> N
+    total <span class="op">←</span> 0
+    i <span class="op">←</span> 1
+    <span class="kw">WHILE</span> i <span class="op">≤</span> N <span class="kw">DO</span>
+        <span class="kw">READ</span> mark
+        total <span class="op">←</span> total + mark
+        i <span class="op">←</span> i + 1
+    <span class="kw">END WHILE</span>
+    average <span class="op">←</span> total <span class="op">÷</span> N
+    <span class="kw">DISPLAY</span> total
+    <span class="kw">DISPLAY</span> average
+    <span class="kw">IF</span> average <span class="op">≥</span> 85 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Excellent"
+    <span class="kw">ELSE IF</span> average <span class="op">≥</span> 70 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Good"
+    <span class="kw">ELSE IF</span> average <span class="op">≥</span> 50 <span class="kw">THEN</span>
+        <span class="kw">DISPLAY</span> "Average"
+    <span class="kw">ELSE</span>
+        <span class="kw">DISPLAY</span> "Poor"
+    <span class="kw">END IF</span>
+<span class="kw">END</span></div>
+            </div>
+          </div>
+          <div class="algo-section">
+            <div class="section-label">✅ Sample Input / Output</div>
+            <div class="sample-box">Input:  N = 4
+        marks: 85, 90, 78, 92
+Output: Total = 345
+        Average = 86.25
+        Performance = Excellent</div>
+          </div>
+          <div class="problem-actions">
+            <button class="btn done-btn">Mark as Done</button>
+          </div>
+        </div>
+      </article>
+
+      <p style="text-align:center; color:var(--text-muted); padding:30px; font-size:14px;">
+        ✅ Module 3 complete — 20 algorithms. All 60 algorithms done! 🎉
+      </p>
+    </section>
   </main>
 </div>
 
